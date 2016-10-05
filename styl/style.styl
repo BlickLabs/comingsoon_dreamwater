@@ -27,6 +27,9 @@ $secondery_color = #000
 // $background_color = #fff
 // $secondery_color = #fff
 
+// Cover text colour
+$cover_text_color = red
+
 $background_img = url("../img/mainbg.jpg")
 $about_background_img = url("../img/leftbg.jpg")
 $contact_background_img = url("../img/rightbg.jpg")
@@ -36,12 +39,6 @@ background-opacity($color, $opacity = 0.6)
   background $color
   /* The Fallback */
   background rgba($color, $opacity)
-
-transition()
-  -moz-transition $transition
-  -o-transition $transition
-  -webkit-transition $transition
-  transition $transition
 
 clear()
   overflow hidden
@@ -227,11 +224,16 @@ p.tagline
 
   .counter-content
     padding-top 35%
+    
+    *
+      color $cover_text_color !important
+      
+    .small-hr
+      background-color $cover_text_color
 
   #countdown span,
   #countdown li.seperator
     @extend h1
-    color $primery_color
     line-height 97px
 
   .trans-overlay-dark
@@ -501,7 +503,8 @@ rotate()
   width auto
 
   &:hover, &:focus, &:active
-    background transparent
+    background $secondery_color
+    border-color $primery_color
     color $primery_color
     outline none
 
