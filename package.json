@@ -17,8 +17,9 @@
   },
   "homepage": "https://github.com/BlickLabs/comingsoon_base#readme",
   "devDependencies": {
+    "autoprefixer-stylus": "^0.10.0",
     "grunt": "^1.0.1",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-contrib-stylus": "^1.2.0"
+    "grunt-contrib-stylus": "^1.2.0",
+    "grunt-contrib-watch": "^1.0.0"
   }
 }
