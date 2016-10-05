@@ -4,25 +4,28 @@
 module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    watch: {
-      sass: {
-        files: ['scss/style.scss'],
-        tasks: ['compileSass']
-      }
-    },
-    sass: {
-      dist: {
-        options: {
-					style: 'expanded'
-				},
+    stylus: {
+      options: {
+        use : [
+          function () {
+            return require('autoprefixer-stylus')('last 2 versions', 'ie 8');
+          }
+        ]
+      },
+      compile: {
         files: {
-          'css/style.css': 'scss/style.scss'
+          'css/style.css': 'styl/style.styl'
         }
       }
+    },
+		watch: {
+      styl: {
+        files: ['styl/style.styl'],
+        tasks: ['stylus']
+			}
     }
   });
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.registerTask('default', ['sass', 'watch']);
-  grunt.registerTask('compileSass', ['sass']);
+  grunt.loadNpmTasks('grunt-contrib-stylus');
+  grunt.registerTask('default', ['stylus, watch']);
 };
