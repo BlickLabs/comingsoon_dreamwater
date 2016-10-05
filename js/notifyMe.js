@@ -3,24 +3,23 @@
  Copyright (c)2014 Sergey Serafimovich
 */
 
-(function ( $ ) {
+(function ($) {
 	"use strict";
-	
-    $.fn.notifyMe = function( options ) {
-
-        // Default options.
-        var settings = $.extend({
-        	// Error and success message strings
-            msgError404: "Service is not available at the moment. Please check your internet connection or try again later.",
+  $.fn.notifyMe = function(options) {
+    // Default options.
+  	var settings = $.extend({
+	  	// Error and success message strings
+	    msgError404: "Service is not available at the moment. Please check your internet connection or try again later.",
 			msgError503: "Oops. Looks like something went wrong. Please try again later.",
 			msgErrorValidation: "This email address looks fake or invalid. Please enter a real email address.",
 			msgErrorFormat: "Your e-mail address is incorrect.",
 			msgSuccess: "Congrats! You are in list."
 		}, options );
 
-    
-    	var $this = $(this);
+  
+		var $this = $(this);
 		var input = $(this).find("input[name=email]");
+		var button = $(this).find("button");
 		
 		var action = $(this).attr("action");
 		var note = $(this).find(".note");
@@ -31,7 +30,7 @@
 		var iconError = "fa fa-exclamation-circle";
 
 		input.after(icon);
-    
+	  
 		$(this).on("submit", function(e){
 			e.preventDefault();
 			// Get value of input
@@ -41,13 +40,13 @@
 			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			
 			if(re.test(email)) {
-			
+				button.attr('disabled', 'disabled');
 				icon.removeClass();
 				icon.addClass(iconProcess);
 				$(this).removeClass("error success");
 				message.text("");
 				note.show();
-	
+
 				$.ajax({
 					type: "POST",
 					url: action,
@@ -58,6 +57,7 @@
 						$this.addClass("error");
 						
 						note.hide();
+						button.removeAttr('disabled');
 						// Change the icon to error
 						icon.removeClass();
 						icon.addClass(iconError);
@@ -73,6 +73,7 @@
 				}).done(function(data){
 					// Hide note
 					note.hide();
+					button.removeAttr('disabled');
 				
 					if(data.status == "success") {
 						// Add success class to form
@@ -111,6 +112,5 @@
 				message.text(settings.msgErrorFormat);
 			}
 		});
-    };
- 
+  };
 }( jQuery ));
