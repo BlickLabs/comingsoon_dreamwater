@@ -16,10 +16,16 @@ Project:  Pogody
 @import 'font-awesome.min.css'
 @import 'bootstrap.min.css'
 @import 'inputtext.css'
-  
-$primery_color = #000
-$background_color = #fff
-$secondery_color = #fff
+
+// Dark theme
+$primery_color = #fff
+$background_color = #000
+$secondery_color = #000
+
+// Light theme
+// $primery_color = #000
+// $background_color = #fff
+// $secondery_color = #fff
 
 $background_img = url("../img/mainbg.jpg")
 $about_background_img = url("../img/leftbg.jpg")
@@ -466,7 +472,15 @@ rotate()
   color $secondery_color
   right 45px
 
-.btn-default.active.focus, .btn-default.active:focus, .btn-default.active:hover, .btn-default.focus:active, .btn-default:active:focus, .btn-default:active:hover, .open > .dropdown-toggle.btn-default.focus, .open > .dropdown-toggle.btn-default:focus, .open > .dropdown-toggle.btn-default:hover
+.btn-default.active.focus,
+.btn-default.active:focus,
+.btn-default.active:hover,
+.btn-default.focus:active,
+.btn-default:active:focus,
+.btn-default:active:hover,
+.open > .dropdown-toggle.btn-default.focus,
+.open > .dropdown-toggle.btn-default:focus,
+.open > .dropdown-toggle.btn-default:hover
   background $primery_color
   border-color $primery_color
   color $secondery_color
@@ -482,16 +496,20 @@ rotate()
   height 57px
   width 203px
   background $primery_color
+  border-width 3px
+  transition all 0.2s
+  width auto
 
-  &:hover,&:focus,&:active
-    background $primery_color
-    color $secondery_color
-    border-color $primery_color
+  &:hover, &:focus, &:active
+    background transparent
+    color $primery_color
     outline none
 
     .arrow
+      border-left-color $primery_color
+
       &:after
-        width 20px
+        background-color $primery_color
 
   .button-label
     padding 10px 10px 10px 8px
@@ -507,11 +525,11 @@ rotate()
     height 0
     border-style solid
     border-width 6px 0 6px 12px
-    border-color transparent transparent transparent #ffffff
+    border-color transparent transparent transparent $secondery_color
 
     &:after
       backface-visibility hidden
-      background #fff none repeat scroll 0 0
+      background $secondery_color none repeat scroll 0 0
       content ""
       height 3px
       position absolute
@@ -556,8 +574,11 @@ rotate()
 
   .btn
     margin-top 25px
-    padding 0
-    width 57px
+    padding 0 10px
+    width auto
+    
+    span
+      float none
 
     .arrow
       margin-left 8px
@@ -990,13 +1011,12 @@ border-widthc()
   .btn
     font-size 12px
     height 40px
-    width 143px
 
     .button-label
-      padding 5px 12px 5px 5px
+      padding 4px 12px 5px 5px
 
     .arrow-wrap
-      padding 9px 6px 6px
+      padding 6px 6px 6px
 
     .arrow
       border-width 5px 0 5px 10px
@@ -1006,19 +1026,13 @@ border-widthc()
         height 2px
         right 7px
 
-  .notify-wrap ,.page-right
-    .btn
-      width 43px
-      .arrow-wrap
-        margin-left 4px
-
 @media only screen and (max-width: 1366px)
   .btn
     .arrow-wrap
-      padding 8px 6px 6px
+      padding 6px 6px 6px
 
     .button-label
-      padding 5px 10px 5px 5px
+      padding 4px 10px 5px 5px
 
   p.tagline, .address-detail a.tagline
     font-size 25px
