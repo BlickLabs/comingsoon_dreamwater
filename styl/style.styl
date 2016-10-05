@@ -28,7 +28,7 @@ $secondery_color = #000
 // $secondery_color = #fff
 
 // Cover text colour
-$cover_text_color = red
+$cover_text_color = #fff
 
 $background_img = url("../img/mainbg.jpg")
 $about_background_img = url("../img/leftbg.jpg")
@@ -220,17 +220,33 @@ p.tagline
   right 0
 
   #countdown
+    display inline-block
     padding-top 28px
+    width auto
+    
+    span.days
+      color $cover_text_color !important
+      display block
+      border-color $cover_text_color
+      border-style solid
+      border-width 0 0 4px 0
+      color white
+      padding 0
+      text-align center
+      
+    span.remain-days
+      color $cover_text_color
+      font-size 14px
+      font-weight 500
+      line-height 1
+      padding-top 10px
 
   .counter-content
     padding-top 35%
     
-    *
-      color $cover_text_color !important
+    p.tagline
+      color $cover_text_color
       
-    .small-hr
-      background-color $cover_text_color
-
   #countdown span,
   #countdown li.seperator
     @extend h1
