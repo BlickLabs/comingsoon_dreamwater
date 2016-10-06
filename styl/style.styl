@@ -35,8 +35,7 @@ $secondery_color = #000
 // $background_color = #fff
 // $secondery_color = #fff
 
-// Cover text colour
-$cover_text_color = #fff
+$cover_layer_opacity = 0.4
 
 $background_img = url("../img/mainbg.jpg")
 $about_background_img = url("../img/leftbg.jpg")
@@ -222,7 +221,8 @@ p.tagline
   letter-spacing -1px
 
 .side-right
-  background rgba(0, 0, 0, 0) $background_img
+  background rgba(0, 0, 0, $cover_layer_opacity) $background_img
+  background-blend-mode multiply
   background-size cover
   background-position center
   background-repeat no-repeat
@@ -235,9 +235,9 @@ p.tagline
     width auto
     
     span.days
-      color $cover_text_color !important
+      color white !important
       display block
-      border-color $cover_text_color
+      border-color white
       border-style solid
       border-width 0 0 4px 0
       color white
@@ -245,7 +245,7 @@ p.tagline
       text-align center
       
     span.remain-days
-      color $cover_text_color
+      color white
       font-size 14px
       font-weight 500
       line-height 1
@@ -255,7 +255,7 @@ p.tagline
     padding-top 35%
     
     p.tagline
-      color $cover_text_color
+      color white
       
   #countdown span,
   #countdown li.seperator
