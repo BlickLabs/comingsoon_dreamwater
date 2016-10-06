@@ -6,6 +6,14 @@ Project:  Pogody
 ++++ Main ++++
 ++++ Mediaqueries ++++
 -------------------------------------------------------------------*/
+
+
+/*
+
+Counter-content (cover text) padding-right on line 252
+
+*/
+
 /****************************/
 /** Imports **/
 /****************************/
@@ -101,13 +109,13 @@ a:focus
 
 h1
   color $primery_color
-  font-size 80px
+  font-size 70px
   letter-spacing -1px
   font-weight 600
 
 h3
   @extend h1
-  font-size 55px
+  font-size 45px
   font-weight 600
   text-transform capitalize
   letter-spacing -1px
@@ -203,6 +211,9 @@ p
 
 .preloader
   background $background_color
+  
+.logo img
+  height 80px
 
 p.tagline
   font-size 30px
@@ -702,7 +713,7 @@ rotate()
       border-color $primery_color
 
   h3
-    padding-bottom 52px
+    padding-bottom 42px
 
   .form-group
     margin-bottom 24px
@@ -787,6 +798,9 @@ rotate()
   bottom 25px
   left 15px
   position absolute
+  
+  li
+    color $primery_color !important
 
   i
     line-height 25px
@@ -1002,7 +1016,7 @@ border-widthc()
 /*****************************************************/
 @media only screen and (max-width: 1710px)
   h1
-    font-size 65px
+    font-size 50px
 
   .open-left .about
     left 30px
@@ -1013,10 +1027,10 @@ border-widthc()
 @media only screen and (max-width: 1530px)
   h1, h3, .side-right #countdown span,
   .side-right #countdown li.seperator
-    font-size 50px
+    font-size 40px
 
   h3
-    font-size 35px
+    font-size 28px
 
   .detail-info
     padding-top 8%
@@ -1090,10 +1104,10 @@ border-widthc()
 
 @media only screen and (max-width: 1082px)
   h1
-    font-size 40px
+    font-size 30px
 
   h3
-    font-size 30px
+    font-size 24px
 
   p.tagline, 
   .address-detail a.tagline
@@ -1126,7 +1140,7 @@ border-widthc()
       font-size 13px
 
   .logo img
-    width 50px
+    height 70px
 
 @media only screen and (max-width: 973px)
   .copyright .social-icons
@@ -1141,10 +1155,10 @@ border-widthc()
 
 @media only screen and (max-width: 870px)
   h1
-    font-size 30px
+    font-size 25px
 
   h3
-    font-size 30px
+    font-size 22px
 
   p.tagline, .address-detail a.tagline
     font-size 18px
@@ -1175,10 +1189,10 @@ border-widthc()
 
 @media only screen and (max-width: 766px)
   h1
-    font-size 50px
+    font-size 40px
 
   h3
-    font-size 30px
+    font-size 28px
 
   .side
     position relative
@@ -1199,9 +1213,6 @@ border-widthc()
     font-size 12px
     padding-top 15px
     padding-bottom 20px
-
-  .logo img
-    width auto
 
   .page
     position static
@@ -1320,4 +1331,4 @@ border-widthc()
 
 @media only screen and (max-width: 414px)
   h1
-    font-size 35px
+    font-size 25px
