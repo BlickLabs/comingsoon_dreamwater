@@ -50,6 +50,22 @@ clear()
   overflow hidden
   clear both
   float none
+  
+.loader-container
+  background rgba($background_color, 0.8)
+  height 100%
+  left 0
+  position absolute
+  top 0
+  width 100%
+  z-index 4
+
+.loader
+  color $primery_color
+  font-size 9px
+  margin 0 auto
+  top 35%
+  transform translateY(calc(-50% - 1em))
 
 /****************************/
 /** Reset **/
@@ -116,7 +132,6 @@ h3
   @extend h1
   font-size 45px
   font-weight 600
-  text-transform capitalize
   letter-spacing -1px
 
 p
@@ -625,9 +640,6 @@ rotate()
     &:hover,&:focus,&:active
       border none
       box-shadow none
-
-  #notifyMe
-    width 441px
 
   .input__label--hoshi::before, .input__label--hoshi::after
     border-bottom 4px solid $primery_color
