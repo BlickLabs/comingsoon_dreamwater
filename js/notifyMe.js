@@ -11,113 +11,62 @@
 	  	// Error and success message strings
 	    msgError404: "Servicio no disponible por el momento.",
 			msgError503: "Algo salió mal. Intentalo de nuevo más tarde.",
-			msgErrorValidation: "La dirección de correo electrónico es inválida o no existe. Porfavor escribe una dirección válida.",
+			msgErrorValidation: "La dirección de correo electrónico es inválida o no existe.",
 			msgErrorFormat: "La dirección de correo electrónico es incorrecta.",
-			msgSuccess: "Mensaje enviado exitosamente."
+			msgSuccess: "Suscripción realizada con éxito."
 		}, options );
 
   
-		var $this = $(this);
-		var input = $(this).find("input[name=email]");
-		var button = $(this).find("button");
-		var loader = $(this).closest(".notify-wrap").children(".loader-container");
+		var form = $(this);
+		var input = form.find("input[name=email]");
+		var button = form.find("button");
+		var loader = form.closest(".notify-wrap").children(".loader-container");
 		
-		var action = $(this).attr("action");
-		var note = $(this).find(".note");
-		var message = $("<div class='col-lg-12 align-center' id='message'></div>").appendTo($(this));
-		var icon = $("<i></i>")
-		var iconProcess = "fa fa-spinner fa-spin";
-		var iconSuccess = "fa fa-check-circle";
-		var iconError = "fa fa-exclamation-circle";
+		var action = form.attr("action");
+		var message = $("<div class='col-lg-12 align-center' id='message'></div>").appendTo(form);
 
-		input.after(icon);
 		loader.hide();
 	  
-		$(this).on("submit", function(e){
+		form.on("submit", function (e) {
 			e.preventDefault();
-			// Get value of input
-			var email = input.val();
-			
 			// Test if the value of input is actually an email
-			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-			
-			if(re.test(email)) {
-				button.attr('disabled', 'disabled');
-				loader.show();
-
-				icon.removeClass();
-				icon.addClass(iconProcess);
-				$(this).removeClass("error success");
-				message.text("");
-				note.show();
-
-				$.ajax({
-					type: "POST",
-					url: action,
-					data: {email: email},
-					dataType: "json",
-					error: function(data){
-						// Add error class to form
-						$this.addClass("error");
-						
-						note.hide();
-						button.removeAttr('disabled');
-						loader.hide();
-
-						// Change the icon to error
-						icon.removeClass();
-						icon.addClass(iconError);
-						
-						// Determine the status of response and display the message
-						if(data.status == 404) {
-							message.text(settings.msgError404);
-						} else {
-							message.text(settings.msgError503); 
-						}
-					},
-					
-				}).done(function(data){
-					// Hide note
-					note.hide();
-					button.removeAttr('disabled');
-					loader.hide();
-				
-					if(data.status == "success") {
-						// Add success class to form
-						$this.addClass("success");
-						// Change the icon to success
-						icon.removeClass();
-						icon.addClass(iconSuccess);
-						$('input').val("");
-						input.trigger('input');
-						message.text(settings.msgSuccess);	
-					} else { 
-						// Add error class to form
-						$this.addClass("error");
-						// Change the icon to error
-						icon.removeClass();
-						icon.addClass(iconError);
-
-						if (data.type == "ValidationError") { 
-							message.text(settings.msgErrorValidation);$('input').val("");
-						} else {
-							message.text(settings.msgError503);
-						}
+			$.ajax({
+	      type: 'POST',
+	      url: action, 
+	      data: form.serialize(),
+	      beforeSend: function () {
+	        var isEmail = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i;
+	        message.text('');
+	        if (isEmail.test(input.val())) {
+	          button.attr('disabled', 'disabled');
+	          loader.show();
+	        } else {
+	           message.text(settings.msgErrorFormat);
+	           return false;
+	        }
+	      },
+	      success: function (data) {
+	        if (data.status == 'subscribed') {
+	          message.text(settings.msgSuccess);
+	        } else if (data.type == "ValidationError") { 
+						message.text(settings.msgErrorValidation);
+					} else {
+						message.text(settings.msgError503);
 					}
-					
-				});
-				
-			} else {$('input').val("");
-				// Add error class to form
-				$(this).addClass("error");
-				// Hide note
-				note.hide();
-				// Change the icon to error
-				icon.removeClass();
-				icon.addClass(iconError);
-				// Display the message
-				message.text(settings.msgErrorFormat);
-			}
-		});
+	      },
+	      error: function (data) {
+	      	if (data.status == 404) {
+	      		message.text(settings.msgError404);
+	      	} else {
+	      		message.text(settings.msgError503);
+	      	}
+	      },
+	      complete: function () {
+	        button.removeAttr('disabled');
+	        loader.hide();
+	        input.val('');
+	      }
+	    });
+  	});
   };
-}( jQuery ));
+}(jQuery));
