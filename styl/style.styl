@@ -26,16 +26,16 @@ Counter-content (cover text) padding-right on line 252
 @import 'inputtext.css'
 
 // Dark theme
-$primery_color = #fff
-$background_color = #000
-$secondery_color = #000
+// $primery_color = #fff
+// $background_color = #000
+// $secondery_color = #000
 
 // Light theme
-// $primery_color = #000
-// $background_color = #fff
-// $secondery_color = #fff
+$primery_color = #707270
+$background_color = #fff
+$secondery_color = #fff
 
-$cover_layer_opacity = 0.4
+$cover_layer_opacity = 0
 
 $background_img = url("../img/mainbg.jpg")
 $about_background_img = url("../img/leftbg.jpg")
@@ -187,7 +187,7 @@ p
   right 0
   width 100px
   height 100%
-  background $primery_color
+  background #8FD3CA
   content ''
   opacity 0
   -webkit-transition opacity 0.2s, box-shadow 2s 4s
@@ -210,8 +210,9 @@ p
   position relative
 
 .side-left
-  background $background_color
-  padding-top 11%
+  background #fff//$background_color
+  padding-top 4.5%
+  text-align left
 
   .small-hr
     margin-top 17px
@@ -227,7 +228,7 @@ p
   background $background_color
 
 .logo img
-  height 80px
+  height 170px
 
 p.tagline
   font-size 30px
@@ -235,10 +236,40 @@ p.tagline
   line-height 45px
   letter-spacing -1px
 
+//******************
+.side-left
+  #countdown
+    display inline-block
+    width auto
+
+    span.days
+      color #707270 !important
+      display block
+      border-color #EBB4C2
+      border-style solid
+      border-width 0 0 4px 0
+      color #707270
+      padding 0
+      text-align center
+      line-height 59px
+      font-size 40px
+      font-weight 600
+
+    span.remain-days
+      color #707270
+      font-size 14px
+      font-weight 500
+      line-height 1
+      padding-top 10px
+      letter-spacing .5px
+
+//******************
+
+
 .side-right
   background rgba(0, 0, 0, $cover_layer_opacity) $background_img
   background-blend-mode multiply
-  background-size cover
+  background-size contain
   background-position center
   background-repeat no-repeat
   color $primery_color
@@ -257,7 +288,7 @@ p.tagline
       border-width 0 0 4px 0
       color white
       padding 0
-      text-align center
+      
 
     span.remain-days
       color white
@@ -265,12 +296,14 @@ p.tagline
       font-weight 500
       line-height 1
       padding-top 10px
+      letter-spacing .5px
 
   .counter-content
     padding-top 35%
 
     p.tagline
       color white
+      letter-spacing .3px
 
   #countdown span,
   #countdown li.seperator
@@ -289,10 +322,9 @@ p.tagline
 
 .type-wrap
   min-height 120px
-  padding-bottom 40px
 
 .small-hr
-  background $primery_color none repeat scroll 0 0
+  background #8FD3CA none repeat scroll 0 0
   display block
   height 4px
   width 32px
@@ -845,6 +877,7 @@ rotate()
     font-size 12px
     display inline-block
     float left
+    padding-bottom 0
 
   .social-icon
     color $primery_color
@@ -1175,8 +1208,10 @@ border-widthc()
     i
       font-size 13px
 
-  .logo img
-    height 70px
+  .logo 
+    text-align center
+    img
+      height 170px
 
 @media only screen and (max-width: 973px)
   .copyright .social-icons
@@ -1369,6 +1404,10 @@ border-widthc()
 
   .page-right .icon
     padding-top 8px
+  
+  .logo img
+    height 115px
+  
 
 @media only screen and (max-width: 414px)
   h1
