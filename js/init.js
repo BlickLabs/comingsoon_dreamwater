@@ -64,7 +64,7 @@ $(window).on("resize", function () {
 function pogody(){
 	/*Counter JS*/
 	$('#countdown').countdown({
-		date: '8/22/2017',
+		date: '08/01/2017',
 	});
 	/*About Owl JS*/
 	$('.qualities').owlCarousel({
@@ -120,7 +120,7 @@ function pogody(){
 	
 	/*Typed js*/
 	$("#typed").typed({
-		strings: [" Coming Soon", " Stay Tuned", " Almost There"],
+		strings: [" Replenish.", " Restore.", " Revitalize."],
 		typeSpeed: 100,
 		backDelay: 900,
 		loop: true,
