@@ -64,7 +64,7 @@ $(window).on("resize", function () {
 function pogody(){
 	/*Counter JS*/
 	$('#countdown').countdown({
-		date: '08/01/2017',
+		date: '09/01/2017',
 	});
 	/*About Owl JS*/
 	$('.qualities').owlCarousel({
