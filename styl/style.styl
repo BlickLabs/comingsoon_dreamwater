@@ -1275,9 +1275,12 @@ border-widthc()
     position relative
     width 100%
 
-    &.side-right .counter-content
-      padding-bottom 250px
-      padding-top 250px
+    &.side-right 
+      background-size contain
+
+      .counter-content
+        padding-bottom 250px
+        padding-top 250px
 
     &.side-left
       padding-top 80px
