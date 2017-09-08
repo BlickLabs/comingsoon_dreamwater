@@ -1,5 +1,5 @@
 /** *************Init JS*********************
-	
+
     TABLE OF CONTENTS
 	---------------------------
 	1.Ready function
@@ -7,9 +7,9 @@
 	3.Subscribe JS
 	4.Full height function
 	5.Resize function
-	
+
 	Pogody function
-	
+
 	6.Counter JS
 	7.About Owl JS
 	8.Team Owl JS
@@ -17,13 +17,13 @@
 	10.Typed js for title tag
 	11.click function
 	12.clone function
-	
+
 	notifyForm function
 	animateStart function
 	animateFinish function
 	Placehoder ie9
  ** ***************************************/
- "use strict"; 
+ "use strict";
 
 
 /*****Ready function start*****/
@@ -44,7 +44,7 @@ $(window).load(function(){
 
 
 /***** Subscribe JS start *****/
-$("#notifyMe").notifyMe(); 
+$("#notifyMe").notifyMe();
 /***** Subscribe JS end*****/
 
 /***** Full height function start *****/
@@ -64,7 +64,7 @@ $(window).on("resize", function () {
 function pogody(){
 	/*Counter JS*/
 	$('#countdown').countdown({
-		date: '09/01/2017',
+		date: '09/15/2017',
 	});
 	/*About Owl JS*/
 	$('.qualities').owlCarousel({
@@ -91,7 +91,7 @@ function pogody(){
         }
     }
 	});
-	
+
 	/*Team Owl JS*/
 	$('.team').owlCarousel({
     loop:true,
@@ -117,7 +117,7 @@ function pogody(){
         }
     }
 	});
-	
+
 	/*Typed js*/
 	$("#typed").typed({
 		strings: [" Replenish.", " Restore.", " Revitalize."],
@@ -137,16 +137,16 @@ function pogody(){
 			target.removeClass('close-right');
 			target.addClass('open-left');
 			target.removeClass('close-left');
-			target.on('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', 
+			target.on('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd',
 			function() {
 				target.removeClass('reset-layout')
-			}); 
+			});
 		 }
 		else if ( target.hasClass('open-left') ) {
 			target.removeClass('reset-layout');
 			target.removeClass('open-left');
 			target.addClass('close-left');
-			target.on('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', 
+			target.on('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd',
 			function() {
 				target.addClass('reset-layout')
 			});
@@ -154,22 +154,22 @@ function pogody(){
 		$('.side-left .call-to-action.about .fa-times').toggleClass('opacity-hide');
 		$('.call-to-action .fa-info').toggleClass('opacity-hide');
 	});
-	
+
 	$(".contact").on('click', function(){
 		if ( target.hasClass('reset-layout') ) {
 			target.addClass('open-right');
 			target.removeClass('close-right');
 			target.removeClass('close-left');
-			target.on('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', 
+			target.on('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd',
 			function() {
 				target.removeClass('reset-layout')
-			}); 
+			});
 		 }
 		else if ( target.hasClass('open-right') ) {
 			target.removeClass('reset-layout');
 			target.removeClass('open-right');
 			target.addClass('close-right');
-			target.on('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd', 
+			target.on('transitionend webkitTransitionEnd oTransitionEnd otransitionend MSTransitionEnd',
 			function() {
 				target.addClass('reset-layout')
 			});
@@ -221,72 +221,72 @@ function notifyForm(){
 			url    = window.location.href,
 			hash   = url.substring(url.indexOf('#')),
 			homeId = 'home';
-	
+
   link.on('click', function(e){
 		var $this    = $(this),
 				id       = $this.attr('href').split('#').pop(),
 				duration = 1;
-		
+
 		e.preventDefault();
-		
+
 		if (!$('#' + id).length) {
 			console.log('No such section!');
 			return false;
 		}
-		
+
 		link.removeClass('active');
-		
+
 		animateFinish();
-		
+
 		$('.section.active [data-out-animation]').each(function(){
 			var $this = $(this);
-			
+
 			if ($this.data('outAnimationDelay')){
 				if ($this.data('outAnimationDelay') >= duration) {
 					duration = $this.data('outAnimationDelay');
 				}
 			}
 		});
-		
+
 		if (!$this.hasClass('open')) {
 			link.removeClass('open');
-			
+
 			menu.find('[href="#'+ id +'"]').addClass('active').addClass('open');
-			
+
 			$('body').find('.preloader').delay(duration + 500).fadeIn(400, function() {
 				$('.section').removeClass('active');
-				
+
 				$('#' + id).addClass('active');
-				
+
 				$(this).fadeOut(400);
-				
+
 				setTimeout(function(){
-					
+
 					animateStart();
 				}, 0);
-				
+
 				//document.location.hash = '#' + id;
 			});
 		} else {
 			$('body').find('.preloader').delay(duration + 500).fadeIn(400, function() {
 				link.removeClass('open');
-				
+
 				$('.section').removeClass('active');
-				
+
 				$('#' + homeId).addClass('active');
-				
+
 				$(this).fadeOut(400);
-				
+
 				setTimeout(function(){
 					//contentScroll();
 					animateStart();
 				}, 0);
-				
+
 				//document.location.hash = '#' + homeId;
 			});
 		}
   });
-  
+
   $('[href="'+ hash +'"]').trigger('click');
 }
 /***** notifyForm function end *****/
@@ -299,15 +299,15 @@ function animateStart(){
 		var $this     = $(this),
 				animation = 'fadeIn',
 				delay     = 1;
-	
+
 		if ($this.data('animation')){
 			animation = $this.data('animation');
 		}
-		
+
 		if ($this.data('animationDelay')){
 			delay = $this.data('animationDelay');
 		}
-	
+
 		if ($this.closest('.section').hasClass('active')){
 			$this.css('animation-delay', delay + 'ms').addClass('animated').addClass(animation);
 		}
@@ -326,33 +326,33 @@ function animateFinish(){
 				outAnimation = 'fadeOut',
 				delay        = 1,
 				outDelay     = 1;
-	
+
 		if ($this.data('animation')){
 			animation = $this.data('animation');
 		}
-		
+
 		if ($this.data('outAnimation')){
 			outAnimation = $this.data('outAnimation');
 		}
-		
+
 		if ($this.data('animationDelay')){
 			delay = $this.data('animationDelay');
 		}
-		
+
 		if ($this.data('outAnimationDelay')){
 			outDelay = $this.data('outAnimationDelay');
 		}
-	
+
 		$this.css('animation-delay', delay + 'ms');
-	
-		
+
+
 		if ($this.closest('.section').hasClass('active')){
 			if (outDelay >= duration) {
 				duration = outDelay;
 			}
 
 			$this.removeClass(animation).addClass(outAnimation);
-			
+
 			if ($this.data('outAnimationDelay')){
 				$this.css('animation-delay', outDelay + 'ms');
 			} else {
@@ -367,4 +367,4 @@ function animateFinish(){
 
 /***** Placehoder ie9 start*****/
 $('input[type=text], textarea').placeholder();
-/***** Placehoder ie9 end*****/	
+/***** Placehoder ie9 end*****/
